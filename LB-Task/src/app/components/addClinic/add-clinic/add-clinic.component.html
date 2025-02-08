@@ -1,0 +1,76 @@
+<p-dialog header="Add Clinic" [modal]="true"  [(visible)]="visible" [style]="{ width: '25rem' }">
+    <p-card >
+        <form [formGroup]="clinicForm" (ngSubmit)="onSubmit()">
+            <div class="p-fluid">
+                <div class="p-field">
+                    <label for="name">Clinic Name</label>
+                    <input pInputText id="name" formControlName="name" placeholder="Enter clinic name" />
+                </div>
+
+                <div class="p-field">
+                    <label for="address">Address</label>
+                    <input pInputText id="address" formControlName="address" placeholder="Enter address" />
+                </div>
+
+                <div class="p-field">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input pInputText id="phoneNumber" formControlName="phoneNumber" placeholder="Enter phone number" />
+                </div>
+
+                <div class="p-field">
+                    <label for="email">Email</label>
+                    <input pInputText id="email" formControlName="email" placeholder="Enter email" />
+                </div>
+
+                <div class="p-field">
+        <label for="openingTime">Opening Time</label>
+        <p-calendar [timeOnly]="true" [showTime]="true" id="openingTime" formControlName="openingTime" hourFormat="24"></p-calendar>
+    </div>
+
+    <div class="p-field">
+        <label for="closingTime">Closing Time</label>
+        <p-calendar id="closingTime" [timeOnly]="true" [showTime]="true" formControlName="closingTime" hourFormat="24"></p-calendar>
+    </div>
+                <!-- <div class="p-field">
+                    <label for="openingTime">Opening Time</label>
+                    <p-calendar id="openingTime"
+                                formControlName="openingTime"
+                                hourFormat="24"
+                                showTime="true"
+                                showButtonBar="false"
+                                [showIcon]="false"
+                                [timeOnly]="true">
+                    </p-calendar>
+                </div>
+
+                <div class="p-field">
+                    <label for="closingTime">Closing Time</label>
+                    <p-calendar id="closingTime"
+                                formControlName="closingTime"
+                                hourFormat="24"
+                                showTime="true"
+                                showButtonBar="false"
+                                [showIcon]="false"
+                                >
+                    </p-calendar>
+                </div> -->
+
+                <div class="p-field">
+                    <label for="description">Description</label>
+
+                  <textarea 
+                  rows="5" 
+                  cols="30" 
+                  pInputTextarea 
+                  formControlName="description">
+              </textarea>
+                </div>
+
+                <div class="p-field">
+                    <button pButton type="submit" label="Add Clinic" [disabled]="isSubmitting"></button>
+                </div>
+            </div>
+        </form>
+    </p-card>
+</p-dialog>
+<p-toast />

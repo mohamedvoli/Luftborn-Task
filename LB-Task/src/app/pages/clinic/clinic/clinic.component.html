@@ -1,0 +1,82 @@
+<p-toast />
+<p-confirmDialog />
+<div class="add-btn">
+<p-button (onClick)="showDialog()" class="" label="Add Clinic"></p-button>
+</div>
+<app-clinic-form [visible]="visible" ></app-clinic-form>
+<div class="card">
+    <p-toast></p-toast>
+    <p-table [value]="clinics" dataKey="id" editMode="row" [tableStyle]="{'min-width': '50rem'}">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width:20%">Name</th>
+                <th style="width:20%">Address</th>
+                <th style="width:20%">Description</th>
+                <th style="width:20%">Email</th>
+                <th style="width:20%"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-clinic let-editing="editing" let-ri="rowIndex">
+            <tr [pEditableRow]="clinic">
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="clinic.name" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{clinic.name}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="clinic.address" required />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{clinic.address}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="clinic.description" required />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{clinic.description}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="clinic.email" required />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{clinic.email}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <div class="flex align-items-center justify-content-center gap-2">
+                        <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil"
+                            (click)="onRowEditInit(clinic)" class="p-button-rounded p-button-text">
+                        </button>
+                        <button pButton pRipple type="button" severity="danger" icon="pi pi-trash"
+                            (click)="onRowDeleteInit($event,clinic)" class="p-button-rounded p-button-text">
+                        </button>
+                        <button *ngIf="editing" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check"
+                            (click)="onRowEditSave(clinic)"
+                            class="p-button-rounded p-button-text p-button-success mr-2">
+                        </button>
+                        <button *ngIf="editing" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times"
+                            (click)="onRowEditCancel(clinic, ri)"
+                            class="p-button-rounded p-button-text p-button-danger">
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
